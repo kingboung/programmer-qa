@@ -11,8 +11,13 @@ import scrapy
 class CsdnItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    question = scrapy.Field()
+    search = scrapy.Field()
     topic = scrapy.Field()
-    author = scrapy.Field()
-    time = scrapy.Field()
-    content = scrapy.Field()
+    answer = scrapy.Field()
+
+
+class StackoverflowItem(scrapy.Item):
+    search = scrapy.Field()
+    topic = scrapy.Field()
+    question = scrapy.Field()
+    answers = scrapy.Field()  # include author, time and content

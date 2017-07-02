@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'ProgrammerQA.spiders'
 #USER_AGENT = 'ProgrammerQA (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -65,7 +65,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'ProgrammerQA.pipelines.CsdnPipeline': 1
+   'ProgrammerQA.pipelines.ProgrammerQAPipeline': 1
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,5 +92,4 @@ ITEM_PIPELINES = {
 # MONGODB settings
 MONGODB_HOST = 'localhost'
 MONGODB_PORT = 27017
-MONGODB_DB = 'csdn'
-MONGODB_COLLECTION = 'blog'
+MONGODB_DB = 'programmerQA'

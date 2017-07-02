@@ -2,6 +2,7 @@
 
 import pymongo
 from scrapy.conf import settings
+from scrapy import log
 
 # Define your item pipelines here
 #
@@ -9,15 +10,26 @@ from scrapy.conf import settings
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class CsdnPipeline(object):
+class ProgrammerQAPipeline(object):
     def __init__(self):
         conn = pymongo.MongoClient(host=settings['MONGODB_HOST'], port=settings['MONGODB_PORT'])
-        db =conn.get_database(settings['MONGODB_DB'])
-        self.collection = db.get_collection(settings['MONGODB_COLLECTION'])
+        self.db =conn.get_database(settings['MONGODB_DB'])
+
 
     def process_item(self, item, spider):
-        article = {}
-        for key, value in item.items():
-            article[key] = value
-        self.collection.insert(article)
+        answer = {}
+        if spider.name == 'CSDN_spider':
+            collection = self.db.get_collection('csdn')
+            for key, value in item.items():
+                answer[key] = value
+            collection.insert(answer)
+
+        elif spider.name == 'Stackoverflow_spider':
+            collection = self.db.get_collection('stackoverflow')
+            for key, value in item.items():
+                answer[key] = value
+            collection.insert(answer)
+
+        else:
+            log.msg("No spider matched", level=log.WARNING)
 
