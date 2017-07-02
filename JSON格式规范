@@ -1,0 +1,266 @@
+JSON格式规范——
+
+1.请求
+{'question': 'xxx'}
+
+
+2.回复
+{
+    'csdn': [
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         },
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         },
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         },
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         },
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         }
+    ],
+    'github': [
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         },
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         },
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         },
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         },
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         }
+    ],
+    'zhihu': [
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         }
+    ],
+    'stackoverflow': [
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         }
+    ],
+    'v2ex': [
+        {'question': 'xxx',
+         'answer': [
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             },
+             {
+                 'author': 'xxx',
+                 'time': 'xxx',
+                 'content': 'xxx'
+             }
+         ]
+         }
+    ]
+}
