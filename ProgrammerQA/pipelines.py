@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import pymongo
-from scrapy.conf import settings
-from scrapy import log
+import logging
+from scrapy.utils.project import get_project_settings
 
 # Define your item pipelines here
 #
@@ -12,6 +12,7 @@ from scrapy import log
 
 class ProgrammerQAPipeline(object):
     def __init__(self):
+        settings = get_project_settings()
         conn = pymongo.MongoClient(host=settings['MONGODB_HOST'], port=settings['MONGODB_PORT'])
         self.db =conn.get_database(settings['MONGODB_DB'])
 
@@ -31,5 +32,5 @@ class ProgrammerQAPipeline(object):
             collection.insert(answer)
 
         else:
-            log.msg("No spider matched", level=log.WARNING)
+            logging.warning("No spider matched")
 

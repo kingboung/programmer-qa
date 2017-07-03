@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import json
+import logging
 import re
 from scrapy.selector import Selector
-from scrapy import log
 from ProgrammerQA.items import CsdnItem
 
 import sys
@@ -25,7 +24,7 @@ class CsdnSpider(scrapy.Spider):
     def __init__(self, search='', *args, **kwargs):
         super(CsdnSpider, self).__init__(*args, **kwargs)
 
-        # log.msg("The search is: %s" % search, level=log.INFO)
+        logging.INFO("The search: %s" % search)
 
         self.search = search
         key_words = search.split(' ')
@@ -85,7 +84,5 @@ class CsdnSpider(scrapy.Spider):
         answer['content'] = (selector.xpath('//*[@id="article_content"]')).xpath('string(.)').extract_first().encode('utf-8')
 
         item['answer'] = answer
-
-        # log.msg("Found an answer: %s" % item['topic'])
 
         return item
