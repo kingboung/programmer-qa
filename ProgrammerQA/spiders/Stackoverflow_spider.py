@@ -46,8 +46,7 @@ class StackoverflowSpider(scrapy.Spider):
 
         item['search'] = self.search
         item['topic'] = selector.xpath('//*[@class="question-hyperlink"]/text()').extract_first()
-
-        #
+        item['question'] = selector.xpath('//*[@class="post-text"]').xpath('string(.)').extract_first()
 
 
         answer_selectors = selector.xpath('//*[@data-answerid]')
