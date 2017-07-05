@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-# -*- coding:utf8 -*-
+# -*- coding:utf-8 -*-
 
-from flask import Flask, request, make_response, jsonify, Response
-from run_spider import run_spider
+from flask import Flask, request, Response
+from run_spider import remove_duplicate, get_cursors
+import os
 import json
 import logging
 
@@ -34,7 +35,6 @@ import logging
 
 app = Flask(__name__)
 
-
 """首页"""
 @app.route('/home', methods=['GET'])
 def home():
@@ -46,38 +46,37 @@ def home():
 def search():
     question = request.form['question']
 
-    logging.info("Get the search: %s" % search)
-
+    logging.info("Get the search: %s" % question)
 
     """将问题传到爬虫并返回爬虫结果"""
-    csdn_cursor = run_spider('CSDN_spider', search=search)
-    stackoverflow_cursor = run_spider('Stackoverflow_spider', search=search)
+    remove_duplicate(question)
+    os.system(r'python run_spider.py "{}"'.format(question))
+    cursors = get_cursors(question)
 
 
     """返回爬虫结果"""
     result = {}
 
-
     # CSDN结果
     result['csdn'] = []
     index = 0
 
-    for doc in csdn_cursor:
+    for doc in cursors['csdn']:
         result['csdn'].append({})
         result['csdn'][index]['question'] = doc['topic']
         result['csdn'][index]['answer'] = doc['answer']
         index += 1
 
-
     # Stackoverflow结果
     result['stackoverflow'] = []
     index = 0
 
-    for doc in stackoverflow_cursor:
+    for doc in cursors['stackoverflow']:
         result['stackoverflow'].append({})
         result['stackoverflow'][index]['question'] = doc['topic']
         result['stackoverflow'][index]['description'] = doc['question']
         result['stackoverflow'][index]['answer'] = doc['answers']
+        index += 1
 
     return Response(json.dumps(result), headers={'Access-Control-Allow-Origin': '*'})
 

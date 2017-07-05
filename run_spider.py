@@ -1,49 +1,61 @@
-from twisted.internet import reactor
-from scrapy.crawler import CrawlerProcess
-from scrapy.utils.project import get_project_settings
-import pymongo
-import logging
+# -*- coding:utf-8 -*-
 
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.log import configure_logging
+from scrapy.utils.project import get_project_settings
+
+import pymongo
+import sys
 
 MONGODB_HOST = 'localhost'
 MONGODB_PORT = 27017
 MONGODB_DB = 'programmerQA'
+SPIDERS = ['CSDN_spider', 'Stackoverflow_spider']
 
 
-def get_collection(spider):
+"""为避免影响判断，将数据库中相同search的文档删除"""
+def remove_duplicate(search):
     client = pymongo.MongoClient(host=MONGODB_HOST, port=MONGODB_PORT)
     db = client.get_database(MONGODB_DB)
 
-    if spider == 'CSDN_spider':
-        return db.get_collection('csdn')
+    for spider in SPIDERS:
+        if spider == 'CSDN_spider':
+            collection = db.get_collection('csdn')
+            collection.remove({'search': search})
 
-    elif spider == 'Stackoverflow_spider':
-        return db.get_collection('stackoverflow')
-
-    else:
-        return None
-
-
-def run_spider(spider, search):
-
-    collection = get_collection(spider)
-
-    """为避免影响判断，将数据库中相同search的文档删除"""
-    if collection == None:
-        logging.warn('No spider matched')
-        return None
-
-    collection.remove({'search':search})
+        if spider == 'Stackoverflow_spider':
+            collection = db.get_collection('stackoverflow')
+            collection.remove({'search': search})
 
 
-    process = CrawlerProcess(get_project_settings())
+def get_cursors(search):
+    client = pymongo.MongoClient(host=MONGODB_HOST, port=MONGODB_PORT)
+    db = client.get_database(MONGODB_DB)
 
-    process.crawl(spider, search=search)
-    process.start()  # the script will block here until the crawling is finished
+    cursors = {}
 
-    """数据库中查询到结果马上返回"""
-    while True:
-        cursor = collection.find({'search':search})
+    cursors['csdn'] = db.get_collection('csdn').find({'search': search})
+    cursors['stackoverflow'] = db.get_collection('stackoverflow').find({'search': search})
 
-        if len(cursor):
-            return cursor
+    return cursors
+
+
+def run_spider(search):
+
+    settings = get_project_settings()
+
+    configure_logging()
+    process = CrawlerProcess(settings=settings)
+
+    for spider in SPIDERS:
+        process.crawl(spider, search=search)
+
+    process.start()
+
+
+if __name__ == '__main__':
+    args = sys.argv
+    # 获取爬取问题
+    search = args[1]
+
+    run_spider(search)

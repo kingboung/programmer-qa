@@ -24,7 +24,7 @@ class CsdnSpider(scrapy.Spider):
     def __init__(self, search='', *args, **kwargs):
         super(CsdnSpider, self).__init__(*args, **kwargs)
 
-        logging.INFO("The search: %s" % search)
+        logging.info("The search: %s" % search)
 
         self.search = search
         key_words = search.split(' ')
