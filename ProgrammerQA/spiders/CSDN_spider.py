@@ -78,7 +78,10 @@ class CsdnSpider(scrapy.Spider):
         item = CsdnItem()
 
         item['search'] = self.search
-        item['topic'] = (selector.xpath('//*[@id="article_details"]//a')).xpath('string(.)').extract()[0].encode('utf-8')
+        try:
+            item['topic'] = (selector.xpath('//*[@id="article_details"]//a')).xpath('string(.)').extract()[0].encode('utf-8')
+        except IndexError:
+            item['topic'] = (selector.xpath('//*[@class="list_c_t"]//a')).xpath('string(.)').extract()[0].encode('utf-8')
         answer['author'] = selector.xpath('//*[@class="user_name"]/text()').extract_first()
         answer['time'] = selector.xpath('//*[@class="link_postdate"]/text()').extract_first()
         answer['content'] = (selector.xpath('//*[@id="article_content"]')).xpath('string(.)').extract_first().encode('utf-8')
