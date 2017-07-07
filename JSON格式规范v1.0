@@ -1,7 +1,8 @@
 JSON格式规范——
 
 1.请求
-{'question': 'xxx'}
+FORM表单
+'question': 'xxx'
 
 
 2.回复
@@ -9,44 +10,44 @@ JSON格式规范——
     'csdn': [
         {'question': 'xxx',
          'answer': 
-             {
+             [{
                  'author': 'xxx',
                  'time': 'xxx',
                  'content': 'xxx'
-             }
+             }]
 
          },
         {'question': 'xxx',
          'answer': 
-             {
+             [{
                  'author': 'xxx',
                  'time': 'xxx',
                  'content': 'xxx'
-             }
+             }]
          },
         {'question': 'xxx',
          'answer': 
-             {
+             [{
                  'author': 'xxx',
                  'time': 'xxx',
                  'content': 'xxx'
-             }
+             }]
          },
         {'question': 'xxx',
          'answer': 
-             {
+             [{
                  'author': 'xxx',
                  'time': 'xxx',
                  'content': 'xxx'
-             }
+             }]
          },
         {'question': 'xxx',
          'answer': 
-             {
+             [{
                  'author': 'xxx',
                  'time': 'xxx',
                  'content': 'xxx'
-             }
+             }]
          }
     ],
     'github': [
@@ -172,12 +173,12 @@ JSON格式规范——
          ‘description’:'xxx',
          'answer': [
              {
-                 'author': 【'xxx'，‘xxx’】,
+                 'author': ['xxx'，‘xxx’],
                  'time': 'xxx',
                  'content': 'xxx'
              },
              {
-                 'author': 【'xxx'】,
+                 'author': ['xxx'],
                  'time': 'xxx',
                  'content': 'xxx'
              },

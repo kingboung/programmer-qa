@@ -29,6 +29,7 @@ class CsdnSpider(scrapy.Spider):
         self.search = search
         key_words = search.split(' ')
         self.initial_url = 'http://so.csdn.net/so/search/s.do?q=' + '+'.join(key_words)
+        self.headers['Referer'] = self.initial_url
         self.start_urls.append(self.initial_url)
 
     #  从搜索页爬取出标题
@@ -44,14 +45,14 @@ class CsdnSpider(scrapy.Spider):
         selector = Selector(response).xpath('//dt')
 
         # 只选取五条的结果
-        blogs = selector.xpath('string(.)').extract()
+        # blogs = selector.xpath('string(.)').extract()
 
-        topics = self.clean_topics_from_blogs(blogs)
+        # topics = self.clean_topics_from_blogs(blogs)
         urls = selector.xpath('./a[1]/@href').extract()
 
         # CSDN博客才符合解析要求(CSDN下载，CSDN极客头条这些不满足解析格式)
-        for (topic, url) in zip(topics, urls):
-            if 'CSDN博客' in topic:
+        for url in urls:
+            if 'blog.csdn' in url:
                 self.url_selected.append(url)
 
         if len(self.url_selected) >= 5:
@@ -79,12 +80,12 @@ class CsdnSpider(scrapy.Spider):
 
         item['search'] = self.search
         try:
-            item['topic'] = (selector.xpath('//*[@id="article_details"]//a')).xpath('string(.)').extract()[0].encode('utf-8')
+            item['topic'] = (selector.xpath('//*[@id="article_details"]//a')).xpath('string(.)').extract()[0]
         except IndexError:
-            item['topic'] = (selector.xpath('//*[@class="list_c_t"]//a')).xpath('string(.)').extract()[0].encode('utf-8')
+            item['topic'] = (selector.xpath('//*[@class="list_c_t"]//a')).xpath('string(.)').extract()[0]
         answer['author'] = selector.xpath('//*[@class="user_name"]/text()').extract_first()
         answer['time'] = selector.xpath('//*[@class="link_postdate"]/text()').extract_first()
-        answer['content'] = (selector.xpath('//*[@id="article_content"]')).xpath('string(.)').extract_first().encode('utf-8')
+        answer['content'] = (selector.xpath('//*[@id="article_content"]')).xpath('string(.)').extract_first()
 
         item['answer'] = answer
 

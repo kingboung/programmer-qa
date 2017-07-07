@@ -64,7 +64,7 @@ def search():
     for doc in cursors['csdn']:
         result['csdn'].append({})
         result['csdn'][index]['question'] = doc['topic']
-        result['csdn'][index]['answer'] = doc['answer']
+        result['csdn'][index]['answer'] = [doc['answer']]
         index += 1
 
     # Stackoverflow结果
