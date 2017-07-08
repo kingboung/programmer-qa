@@ -78,6 +78,17 @@ def search():
         result['stackoverflow'][index]['answer'] = doc['answers']
         index += 1
 
+    # Stackoverflow结果
+    result['v2ex'] = []
+    index = 0
+
+    for doc in cursors['v2ex']:
+        result['v2ex'].append({})
+        result['v2ex'][index]['question'] = doc['topic']
+        result['v2ex'][index]['description'] = doc['question']
+        result['v2ex'][index]['answer'] = doc['answers']
+        index += 1
+
     return Response(json.dumps(result), headers={'Access-Control-Allow-Origin': '*'})
 
 

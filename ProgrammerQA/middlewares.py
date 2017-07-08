@@ -54,3 +54,13 @@ class ProgrammerqaSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class ProgrammerQADownloaderMiddleware(object):
+
+    proxy_spiders = ['V2EX_spider']
+
+    def process_request(self, request, spider):
+        # 需要代理的爬虫配置http代理
+        if spider.name in self.proxy_spiders:
+            request.meta['proxy'] = "http://127.0.0.1:8118"

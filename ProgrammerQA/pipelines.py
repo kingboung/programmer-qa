@@ -31,6 +31,12 @@ class ProgrammerQAPipeline(object):
                 answer[key] = value
             collection.insert(answer)
 
+        elif spider.name == 'V2EX_spider':
+            collection = self.db.get_collection('v2ex')
+            for key, value in item.items():
+                answer[key] = value
+            collection.insert(answer)
+
         else:
             logging.warning("No spider matched")
 
