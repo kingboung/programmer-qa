@@ -10,6 +10,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+
 class CsdnSpider(scrapy.Spider):
     name = 'CSDN_spider'
     url_selected = []
@@ -40,7 +41,6 @@ class CsdnSpider(scrapy.Spider):
             topics.append(topic)
         return topics
 
-
     def parse(self, response):
         selector = Selector(response).xpath('//dt')
 
@@ -69,7 +69,6 @@ class CsdnSpider(scrapy.Spider):
                 self.page += 1
                 url = self.initial_url + '&p=%d' % self.page
                 yield scrapy.Request(url, callback=self.parse)
-
 
     def parse_content(self, response):
         selector = Selector(response)
