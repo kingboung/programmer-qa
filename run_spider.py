@@ -10,7 +10,7 @@ import sys
 MONGODB_HOST = 'localhost'
 MONGODB_PORT = 27017
 MONGODB_DB = 'programmerQA'
-SPIDERS = ['CSDN_spider', 'Stackoverflow_spider']
+SPIDERS = ['CSDN_spider', 'Stackoverflow_spider', 'V2EX_spider']
 
 
 """为避免影响判断，将数据库中相同search的文档删除"""
@@ -27,6 +27,10 @@ def remove_duplicate(search):
             collection = db.get_collection('stackoverflow')
             collection.remove({'search': search})
 
+        if spider == 'V2EX_spider':
+            collection = db.get_collection('v2ex')
+            collection.remove({'search': search})
+
 
 def get_cursors(search):
     client = pymongo.MongoClient(host=MONGODB_HOST, port=MONGODB_PORT)
@@ -36,6 +40,7 @@ def get_cursors(search):
 
     cursors['csdn'] = db.get_collection('csdn').find({'search': search})
     cursors['stackoverflow'] = db.get_collection('stackoverflow').find({'search': search})
+    cursors['v2ex'] = db.get_collection('v2ex').find({'search': search})
 
     return cursors
 
