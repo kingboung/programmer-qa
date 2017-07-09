@@ -3,5 +3,8 @@ api接口文档
 1.搜索首页
 GET		/home
 
-2.搜索请求
+2.问答页面
+GET     /answer
+
+3.搜索请求
 POST	/search

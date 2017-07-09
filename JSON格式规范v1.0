@@ -50,8 +50,9 @@ FORM表单
              }]
          }
     ],
-    'github': [
+    'oschina': [
         {'question': 'xxx',
+         'description': 'xxx',
          'answer': [
              {
                  'author': 'xxx',
@@ -71,6 +72,7 @@ FORM表单
          ]
          },
         {'question': 'xxx',
+         'description': 'xxx',
          'answer': [
              {
                  'author': 'xxx',
@@ -90,6 +92,7 @@ FORM表单
          ]
          },
         {'question': 'xxx',
+         'description': 'xxx',
          'answer': [
              {
                  'author': 'xxx',
@@ -109,6 +112,7 @@ FORM表单
          ]
          },
         {'question': 'xxx',
+         'description': 'xxx',
          'answer': [
              {
                  'author': 'xxx',
@@ -128,6 +132,7 @@ FORM表单
          ]
          },
         {'question': 'xxx',
+         'description': 'xxx',
          'answer': [
              {
                  'author': 'xxx',
@@ -192,6 +197,7 @@ FORM表单
     ],
     'v2ex': [
         {'question': 'xxx',
+         'description': 'xxx',
          'answer': [
              {
                  'author': 'xxx',

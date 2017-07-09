@@ -22,7 +22,15 @@ class StackoverflowItem(scrapy.Item):
     question = scrapy.Field()
     answers = scrapy.Field()  # include author, time and content
 
+
 class V2exItem(scrapy.Item):
+    search = scrapy.Field()
+    topic = scrapy.Field()
+    question = scrapy.Field()
+    answers = scrapy.Field()
+
+
+class OschinaItem(scrapy.Item):
     search = scrapy.Field()
     topic = scrapy.Field()
     question = scrapy.Field()

@@ -1,0 +1,40 @@
+
+#answer{
+    margin-top: 20px;
+    width: 600px;
+    margin:0 auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px;
+    position: relative;
+    top: 50px ;
+}
+.glyphicon-home{
+    top:10px;
+    float: right;
+    margin-right: 15px;
+    font-size: large;
+}
+.author{
+    float:left;
+    width:100px;
+}
+.time{
+    position: fixed;
+    right: 20px;
+}
+.wrap{
+    display: flex;
+}
+.description{
+    background-color: #eaf5ff;
+}
+.content{
+    border-radius: 3px;
+    font-size: 15px;
+    background-color: #eff0f1;
+}
+.answer{
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #e7eaf1;
+}
