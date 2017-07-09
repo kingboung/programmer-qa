@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from flask import Flask, request, Response
+from flask import Flask, request, Response,render_template
 from run_spider import remove_duplicate, get_cursors
 import os
 import json
@@ -38,7 +38,13 @@ app = Flask(__name__)
 """首页"""
 @app.route('/home', methods=['GET'])
 def home():
-    return "Hello Guangpan"
+    return render_template('index.html')
+
+
+"""问题页"""
+@app.route('/answer', methods=['GET'])
+def answer():
+    return render_template('answer.html')
 
 
 """搜索"""
