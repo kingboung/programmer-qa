@@ -106,6 +106,17 @@ def search():
         result['oschina'][index]['answer'] = doc['answers']
         index += 1
 
+    # Zhihu结果
+    result['zhihu'] = []
+    index = 0
+
+    for doc in cursors['zhihu']:
+        result['zhihu'].append({})
+        result['zhihu'][index]['question'] = doc['topic']
+        result['zhihu'][index]['description'] = doc['question']
+        result['zhihu'][index]['answer'] = doc['answers']
+        index += 1
+
     return Response(json.dumps(result), headers={'Access-Control-Allow-Origin': '*'})
 
 

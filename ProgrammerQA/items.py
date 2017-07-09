@@ -35,3 +35,10 @@ class OschinaItem(scrapy.Item):
     topic = scrapy.Field()
     question = scrapy.Field()
     answers = scrapy.Field()
+
+
+class ZhihuItem(scrapy.Item):
+    search = scrapy.Field()
+    topic = scrapy.Field()
+    question = scrapy.Field()
+    answers = scrapy.Field()

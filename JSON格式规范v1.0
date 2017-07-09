@@ -154,6 +154,7 @@ FORM表单
     ],
     'zhihu': [
         {'question': 'xxx',
+         'description': 'xxx',
          'answer': [
              {
                  'author': 'xxx',
