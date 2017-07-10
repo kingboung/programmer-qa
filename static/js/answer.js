@@ -3,13 +3,12 @@
  */
 $(function () {
     var clickele = localStorage.getItem('clickEle');
-    $('.' + clickele).addClass("active");
-    $('#'+clickele).show();
+    $('.' + clickele +' a').click();
     var temp = localStorage.getItem('jsonobj1');
     var jsonobj = JSON.parse(temp);
     var question_index = 1;
     $('.glyphicon-home').click(function () {//返回搜索页面
-        window.location.href="../templates/index.html";
+        window.location.href="home";
     });
 
     search();
@@ -36,7 +35,22 @@ $(function () {
                         '</div>'+
                         '</div>'
                     );
-                if(key =="stackoverflow"){//stackoverflow含description字段，在模态框的内容里面家设一个description的div
+                if(key =="csdn"){//没description的网站
+                    for(var j=0;j<jsonobj[key][i].answer.length;j++){
+                        var answer_list = jsonobj[key][i].answer;
+                        $('#modal_question-'+question_index+' .modal-body').append(
+                            '<div class="answer">'+
+                            '<div class="wrap">'+
+                            '<div class="author">'+answer_list[j].author +'</div>'+
+                            '<div class="time">'+ answer_list[j].time+'</div>'+
+                            '</div>'+
+                            '<br>'+
+                            '<div class="content">'+ answer_list[j].content+'</div>'+
+                            '</div>'
+                        )
+                    }
+                }
+                else{//含description的网站
                     for(var j=0;j<jsonobj[key][i].answer.length;j++){
                         var answer_list = jsonobj[key][i].answer;
                         $('#modal_question-'+question_index+' .modal-body').append(
@@ -47,21 +61,6 @@ $(function () {
                             '</div>'+
                             '<br>'+
                             '<div class="description">'+ jsonobj[key][i].description+'</div>'+
-                            '<br>'+
-                            '<div class="content">'+ answer_list[j].content+'</div>'+
-                            '</div>'
-                        )
-                    }
-                }
-                else{//其他网站没有description的div
-                    for(var j=0;j<jsonobj[key][i].answer.length;j++){
-                        var answer_list = jsonobj[key][i].answer;
-                        $('#modal_question-'+question_index+' .modal-body').append(
-                            '<div class="answer">'+
-                            '<div class="wrap">'+
-                            '<div class="author">'+answer_list[j].author +'</div>'+
-                            '<div class="time">'+ answer_list[j].time+'</div>'+
-                            '</div>'+
                             '<br>'+
                             '<div class="content">'+ answer_list[j].content+'</div>'+
                             '</div>'
